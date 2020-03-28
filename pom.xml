@@ -5,40 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.jjz</groupId>
-    <artifactId>env-maven-plugin</artifactId>
+    <artifactId>EnvManagePlugin</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>plugin</module>
+    </modules>
 
-    <packaging>maven-plugin</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-plugin-api</artifactId>
-            <version>3.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugin-tools</groupId>
-            <artifactId>maven-plugin-annotations</artifactId>
-            <version>3.5</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.26</version>
-        </dependency>
-
-
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <packaging>pom</packaging>
 
     <!--<distributionManagement>
         <repository>
@@ -58,11 +31,6 @@
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.4</version>
             </plugin>
         </plugins>
     </build>
