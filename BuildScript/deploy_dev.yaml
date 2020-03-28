@@ -1,0 +1,28 @@
+---
+kind: Deployment
+apiVersion: v1
+metadata:
+  name: kube100-site
+  labels:
+    app: web
+  namespace: space
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: xxx
+      annotations:
+        owners.cmb.io/info: 'xxxx'
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: xxx
+          image: [image]
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: PROPERTY
+              value: >-
+                {"key1": "value1", "key2": "value2"}
