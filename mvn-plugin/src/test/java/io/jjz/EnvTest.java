@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.jjz.utils.EnvUtils.setEnv;
+import static io.jjz.utils.EnvUtil.setEnv;
 
 public class EnvTest {
 

@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: TZ
-              value: Asia/Shanghai
+              value: Asia/Shanghai111d
             - name: PROPERTY
               value: >-
                 {"key1": "value1", "key2": "value2"}

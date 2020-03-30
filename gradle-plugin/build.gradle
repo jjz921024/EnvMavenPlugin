@@ -1,0 +1,76 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group 'io.jjz'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+}
+
+dependencies {
+    //gradle sdk
+    compile gradleApi()
+    //groovy sdk
+    compile localGroovy()
+    
+    compile group: 'io.jjz', name: 'common', version: '1.0-SNAPSHOT'
+    
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+
+// 发布方式一  gradle uploadArchives
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //提交到远程服务器：
+            /*repository(url: "http://www.xxx.com/repos") {
+                authentication(userName: "admin", password: "admin")
+            }*/
+            
+            //本地的Maven仓库
+            repository(url: "file:../gradleRepos")
+        }
+    }
+}
+
+// 发布方式二  
+/*
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            //这两行是发布源码和文档的，可以不发布
+            artifact sourcesJar
+            artifact javadocJar
+
+            groupId 'io.jjz'
+            artifactId 'envPlugin'
+            version '1.0-SNAPSHOT'
+        }
+    }
+
+    repositories {
+        maven {
+            url "../repo"
+        }
+    }
+}
+
+// 将源代码和javadoc打包发布
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from "${buildDir}/javadoc"
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}*/

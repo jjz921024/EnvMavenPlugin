@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
 
-public class EnvUtils {
+public class EnvUtil {
 
   public static void setEnv(Map<String, String> envMap) throws Exception {
     try {
