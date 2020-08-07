@@ -24,7 +24,7 @@
         <plugins>
             <plugin>
                 <groupId>io.jjz</groupId>
-                <artifactId>env-maven-plugin</artifactId>
+                <artifactId>mvn-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <executions>
                     <execution>
@@ -40,7 +40,7 @@
             </plugin>
 
             <!-- alternative  -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
@@ -51,9 +51,9 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
-            <plugin>
+            <!--<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
@@ -68,7 +68,7 @@
                 <configuration>
                     <mainClass>io.jjz.MainEntry</mainClass>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
         </plugins>
     </build>

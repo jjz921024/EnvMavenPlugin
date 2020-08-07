@@ -24,7 +24,6 @@ public class EnvManagerPlugin extends AbstractMojo {
   @Parameter(property = "env", defaultValue = "dev")
   private String envFlag;
 
-
   @Parameter(property = "path")
   private String path;
 

@@ -1,4 +1,4 @@
-import io.jjz.EnvConfigExt
+import io.jjz.EnvConfigExtension
 import io.jjz.common.Constants
 import org.junit.Test
 
@@ -6,7 +6,7 @@ class EvnTest {
 
     @Test
     void test() {
-        def evnConfig = new EnvConfigExt()
+        def evnConfig = new EnvConfigExtension()
         //evnConfig.envFlag = 'st'
         evnConfig.path = 'dfdfd'
 

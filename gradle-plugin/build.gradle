@@ -36,6 +36,9 @@ uploadArchives {
             
             //本地的Maven仓库
             repository(url: "file:../gradleRepos")
+            pom.groupId = 'io.jjz'
+            pom.artifactId = 'env-plugin'
+            pom.version = '1.0-SNAPSHOT'
         }
     }
 }

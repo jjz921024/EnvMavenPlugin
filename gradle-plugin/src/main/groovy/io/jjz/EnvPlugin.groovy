@@ -10,49 +10,52 @@ class EnvPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        def evnConfig = project.extensions.create("envConfig", EnvConfigExt)
+        // 增加一个扩展配置用来接收参数
+        def evnConfig = project.extensions.create("envTask", EnvConfigExtension)
 
-        project.task("env") {
-            println(evnConfig.toString())
+        // 添加一个任务
+        project.task('envTask') {
+            doFirst {
+                println ">>>>  ${evnConfig}"
 
-            if (!evnConfig.path) {
-                evnConfig.isK8s = true
-                evnConfig.envFlag = !evnConfig.envFlag ? "dev" : evnConfig.envFlag
-                evnConfig.path = Constants.BASE_PATH + evnConfig.envFlag + Constants.YAML_SUFFIX
-            }
-
-            // 获取配置文件
-            File file = new File(evnConfig.path)
-            if (!file.exists()) {
-                println(evnConfig.path + " dose not exist.")
-                return
-            }
-            if (!file.isFile()) {
-                println(evnConfig.path + " is not a file.")
-                return
-            }
-
-
-            println("parse file: " + file.getName())
-            try {
-                Map<String, String> envMap = null
-                if (evnConfig.isK8s) {
-                    envMap = ParseUtil.parseK8sFile(file)
-                } else {
-                    envMap = ParseUtil.parseCommonFile(file)
+                boolean isK8s
+                if (!evnConfig.path) {
+                    isK8s = true
+                    evnConfig.flag = !evnConfig.flag ? "dev" : evnConfig.flag
+                    evnConfig.path = Constants.BASE_PATH + evnConfig.flag + Constants.YAML_SUFFIX
                 }
 
-                EnvUtil.setEnv(envMap)
-
-                for (Map.Entry<String, String> entry : envMap.entrySet()) {
-                    println("set " + entry.getKey() + " = " + entry.getValue())
+                // 获取配置文件
+                File file = new File(evnConfig.path)
+                if (!file.exists()) {
+                    println(evnConfig.path + " dose not exist.")
+                    return
+                }
+                if (!file.isFile()) {
+                    println(evnConfig.path + " is not a file.")
+                    return
                 }
 
-            } catch (Exception e) {
-                println(e.getMessage())
+
+                println("parse file: " + file.getName())
+                try {
+                    Map<String, String> envMap
+                    if (isK8s) {
+                        envMap = ParseUtil.parseK8sFile(file)
+                    } else {
+                        envMap = ParseUtil.parseCommonFile(file)
+                    }
+
+                    EnvUtil.setEnv(envMap)
+
+                    for (Map.Entry<String, String> entry : envMap.entrySet()) {
+                        println("set " + entry.getKey() + " = " + entry.getValue())
+                    }
+
+                } catch (Exception e) {
+                    println(e.getMessage())
+                }
             }
         }
-
-
     }
 }

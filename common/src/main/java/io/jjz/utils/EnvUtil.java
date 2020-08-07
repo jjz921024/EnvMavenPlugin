@@ -9,14 +9,15 @@ public class EnvUtil {
   public static void setEnv(Map<String, String> envMap) throws Exception {
     try {
       Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
-
       Field theEnvironmentField = processEnvironmentClass.getDeclaredField("theEnvironment");
       theEnvironmentField.setAccessible(true);
+
       Map<String, String> env = (Map<String, String>) theEnvironmentField.get(null);
       env.putAll(envMap);
 
       Field theCaseInsensitiveEnvironmentField = processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
       theCaseInsensitiveEnvironmentField.setAccessible(true);
+
       Map<String, String> cienv = (Map<String, String>) theCaseInsensitiveEnvironmentField.get(null);
       cienv.putAll(envMap);
 
@@ -35,6 +36,5 @@ public class EnvUtil {
       }
     }
   }
-
 
 }

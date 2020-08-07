@@ -8,7 +8,7 @@ buildscript {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     }
     dependencies {
-        classpath 'io.jjz:gradle-plugin:1.0-SNAPSHOT'
+        classpath 'io.jjz:env-plugin:1.0-SNAPSHOT'
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
@@ -19,6 +19,10 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'io.jjz.env-plugin'
 
+envTask {
+    //flag "dev"
+    path "C:\\Users\\Jun\\IdeaProjects\\EnvManagePlugin\\example\\env"
+}
 
 
 group 'io.jjz'
@@ -41,16 +45,16 @@ jar {
     version = '0.0.1'
     manifest {
         attributes "Manifest-Version": 1.0, 
-                'Main-Class': 'io.jjz.Application'
+                'Main-Class': 'io.jjz.MainEntry'
     }
 }
 
-env {
-    
-    envConfig {
-        envFlag 'st'
-    }
-    //path = "C:\\Users\\Jun\\IdeaProjects\\EnvManagePlugin\\example\\env"
+task run(type: JavaExec, dependsOn: 'classes') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'io.jjz.MainEntry'
 }
 
+run {
+
+}
 
