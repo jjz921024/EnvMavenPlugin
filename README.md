@@ -12,6 +12,7 @@
 - 构建gradle插件,并安装到本地仓库
 ```
 ~/EvnManagePlugin/gradle-plugin>gradle uploadArchives
+gradle publishToMavenLocal (gradle 5.x)
 ```
 
 

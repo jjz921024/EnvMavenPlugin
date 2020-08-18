@@ -44,8 +44,7 @@ uploadArchives {
 }
 
 // 发布方式二  
-/*
-publishing {
+/*publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
@@ -74,6 +73,6 @@ task javadocJar(type: Jar, dependsOn: groovydoc) {
 }
 
 task sourcesJar(type: Jar) {
-    from sourceSets.main.allSource
     classifier = 'sources'
+    from sourceSets.main.allSource
 }*/

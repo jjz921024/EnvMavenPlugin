@@ -12,9 +12,10 @@ public class ParseUtil {
   public static Map<String, String> parseK8sFile(File file) throws IOException {
     Yaml yaml = new Yaml();
     try (FileInputStream fileInputStream = new FileInputStream(file)) {
-      Map<String, Object> root = yaml.load(fileInputStream);
+      Iterable<Object> iterable = yaml.loadAll(fileInputStream);
+      Map<String, Object> deployments = (Map<String, Object>) iterable.iterator().next();
 
-      Object env = YamlUtil.getValue(root, "spec", "template", "spec", "containers", "env");
+      Object env = YamlUtil.getValue(deployments, "spec", "template", "spec", "containers", "env");
       if (env == null) {
         throw new IllegalArgumentException("can't find spec#template#spec#containers[env]");
       }
