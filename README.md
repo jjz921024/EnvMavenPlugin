@@ -40,11 +40,41 @@ gradle publishToMavenLocal (gradle 5.x)
 ```
 2. 执行程序
 - 运行普通Java工程，引入exec-maven-plugin插件
-```
+```xml
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>1.6.0</version>
+    <executions>
+    	<execution>
+    	<phase>compile</phase>
+    	<goals>
+    		<goal>java</goal>
+    	</goals>
+    	</execution>
+    </executions>
+    <configuration>
+    	<mainClass>io.jjz.MainEntry</mainClass>
+    </configuration>
+</plugin>
+
 ~\EvnManagePlugin\example>mvn clean compile
 ```
 - 运行SpringBoot工程，引入spring-boot-maven-plugin插件
-```
+```xml
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <executions>
+    	<execution>
+            <phase>compile</phase>
+            <goals>
+            	<goal>run</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+            
 ~\EvnManagePlugin\example>mvn clean spring-boot:run 
 ```
 
@@ -90,3 +120,4 @@ jar {
 
 gradle envTask bootRun
 ```
+
